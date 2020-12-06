@@ -39,7 +39,7 @@ export default function ProfileForm({ profile }) {
             type='submit'
             size='large'
             positive
-            content='Update profile'
+            content='Update Profile'
           />
         </Form>
       )}

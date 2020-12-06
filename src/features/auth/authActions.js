@@ -3,7 +3,6 @@ import firebase from "../../app/config/firebase";
 
 import {APP_LOADED} from '../../app/async/asyncReducer'
 import { dataFromSnapshot, getUserProfile } from "../../app/firestore/firestoreService";
-import profileReducer from "../profiles/profileReducer";
 import { listenToCurrentUserProfile } from "../profiles/profileActions";
 
 export function signInUser(user) {

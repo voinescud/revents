@@ -13,7 +13,7 @@ export default function AboutTab({ profile,isCurrentUser }) {
           <Header
             floated='left'
             icon='user'
-            content={`About ${profile.displayName}`}
+            content={`About${profile.displayName}`}
           />
           {isCurrentUser &&
           <Button
