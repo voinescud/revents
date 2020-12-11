@@ -1,5 +1,6 @@
-import React from "react";
-import EventListItem from "./EventListItem";
+import React from 'react';
+import EventListItem from './EventListItem';
+
 export default function EventList({ events }) {
   return (
     <>
