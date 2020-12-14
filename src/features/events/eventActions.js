@@ -1,6 +1,7 @@
 import { CREATE_EVENT, UPDATE_EVENT, DELETE_EVENT, FETCH_EVENTS } from './eventConstants';
 import {asyncActionStart, asyncActionFinish, asyncActionError} from '../../app/async/asyncReducer';
 import {fetchSampleData} from '../../app/api/mockApi';
+import { LISTEN_TO_EVENT_CHAT } from './eventContants';
 
 export function loadEvents() {
     return async function(dispatch) {
@@ -40,5 +41,14 @@ export function deleteEvent(eventId) {
     return {
         type: DELETE_EVENT,
         payload: eventId
+    }
+}
+
+export function listenToEventChat(comments){
+
+    return{
+
+        type: LISTEN_TO_EVENT_CHAT,
+        payload : comments
     }
 }

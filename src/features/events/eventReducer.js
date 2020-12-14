@@ -1,7 +1,14 @@
-import { CREATE_EVENT, UPDATE_EVENT, DELETE_EVENT, FETCH_EVENTS } from './eventConstants';
+import {
+  CREATE_EVENT,
+  UPDATE_EVENT,
+  DELETE_EVENT,
+  FETCH_EVENTS,
+} from "./eventConstants";
+import { CLEAR_COMMENTS, LISTEN_TO_EVENT_CHAT } from "./eventContants";
 
 const initialState = {
   events: [],
+  comments: [],
 };
 
 export default function eventReducer(state = initialState, { type, payload }) {
@@ -24,11 +31,22 @@ export default function eventReducer(state = initialState, { type, payload }) {
         ...state,
         events: [...state.events.filter((evt) => evt.id !== payload)],
       };
-      case FETCH_EVENTS:
+    case FETCH_EVENTS:
+      return {
+        ...state,
+        events: payload,
+      };
+
+    case LISTEN_TO_EVENT_CHAT:
+      return {
+        ...state,
+        comments: payload,
+      };
+      case CLEAR_COMMENTS:
         return {
           ...state,
-          events: payload
-        }
+          comments: [],
+        };
     default:
       return state;
   }
