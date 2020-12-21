@@ -2,13 +2,11 @@ import firebase from '../config/firebase';
 import { setUserProfileData } from './firestoreService';
 import { toast } from 'react-toastify';
 
-export function firebaseObjectToArray(snapshot){
-  if(snapshot)
-  {
-    return Object.entries(snapshot).map(e=> Object.assign({},e[1],{id: e[0]}))
+export function firebaseObjectToArray(snapshot) {
+  if (snapshot) {
+    return Object.entries(snapshot).map(e => Object.assign({}, e[1], {id: e[0]}))
   }
 }
-
 
 export function signInWithEmail(creds) {
   return firebase
@@ -71,20 +69,24 @@ export function deleteFromFirebaseStorage(filename) {
   return photoRef.delete();
 }
 
-export function addEventChatComment(eventId,values){
-
+export function addEventChatComment(eventId, values) {
   const user = firebase.auth().currentUser;
-  const newComment={
+  const newComment = {
     displayName: user.displayName,
-    photoURL : user.photoURL,
-    uid : user.uid,
-    text:values.comment,
+    photoURL: user.photoURL,
+    uid: user.uid,
+    text: values.comment,
     date: Date.now(),
     parentId: values.parentId
   }
   return firebase.database().ref(`chat/${eventId}`).push(newComment);
 }
 
-export function getEventChatRef(eventId){
+export function getEventChatRef(eventId) {
   return firebase.database().ref(`chat/${eventId}`).orderByKey()
+}
+
+export function getUserFeedRef() {
+  const user = firebase.auth().currentUser;
+  return firebase.database().ref(`posts/${user.uid}`).orderByKey().limitToLast(5)
 }
